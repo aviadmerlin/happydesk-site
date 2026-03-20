@@ -51,12 +51,12 @@ nav .logo-happy,nav .logo-desk{color:var(--orange)}
 .hero-people::before,.hero-people::after{content:'';position:absolute;bottom:8px;width:clamp(160px,18vw,240px);height:24px;border-radius:50%;background:rgba(26,26,46,.14);filter:blur(16px);z-index:0}
 .hero-people::before{left:6%}
 .hero-people::after{right:6%}
-.hero-person{width:clamp(280px,36vw,540px);height:clamp(320px,68vh,640px);position:relative;isolation:isolate;background-image:url('/Users/aviadmerlin/Downloads/Gemini_Generated_Image_xiwg37xiwg37xiwg-removebg.png');background-repeat:no-repeat;background-size:auto 100%;filter:drop-shadow(0 10px 26px rgba(26,26,46,.16))}
+.hero-person{width:clamp(280px,36vw,540px);height:clamp(320px,68vh,640px);position:relative;isolation:isolate;background-repeat:no-repeat;background-size:auto 100%;filter:drop-shadow(0 10px 26px rgba(26,26,46,.16))}
 .hero-person::before{content:'';position:absolute;inset:16% 14% 12%;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.18) 0%,rgba(124,58,237,.09) 40%,rgba(124,58,237,0) 70%);filter:blur(20px);z-index:-1;pointer-events:none}
 .hero-person::after{content:'';position:absolute;width:80px;height:80px;background:radial-gradient(circle at 16px 18px,rgba(124,58,237,.8) 0 5px,transparent 6px),radial-gradient(circle at 64px 20px,rgba(0,201,177,.7) 0 4px,transparent 5px),radial-gradient(circle at 40px 64px,rgba(255,217,61,.7) 0 3.5px,transparent 4.5px);opacity:.65;animation:heroFloat 7.2s ease-in-out infinite;z-index:2;pointer-events:none}
-.hero-person-left{background-position:right bottom;transform:translateX(-24px)}
+.hero-person-left{background-image:url('assets/hero-left.png');background-position:right bottom;transform:translateX(-24px)}
 .hero-person-left::after{top:48%;right:8%;animation-delay:-1.6s}
-.hero-person-right{background-position:left bottom;transform:translateX(24px)}
+.hero-person-right{background-image:url('assets/hero-right.png');background-position:left bottom;transform:translateX(24px)}
 .hero-person-right::after{top:44%;left:8%;animation-delay:-3.4s}
 @keyframes heroFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(3deg)}}
 .hero-tag{display:inline-flex;align-items:center;gap:10px;color:#5B21B6;font-size:15px;font-weight:700;letter-spacing:.01em;margin-bottom:26px;opacity:0;transform:translateY(16px);animation:fup .7s var(--expo) .1s forwards}
