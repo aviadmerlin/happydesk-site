@@ -28,11 +28,12 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);direc
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
 .logo{font-size:22px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;letter-spacing:-.45px;line-height:1;direction:ltr;unicode-bidi:isolate;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+nav .logo img{height:118px;width:auto;display:block}
 .logo-happy{color:var(--dark);font-weight:900}
 .logo-desk{color:var(--orange);font-weight:900}
 nav .logo-happy,nav .logo-desk{color:var(--orange)}
 .nav-links{display:flex;gap:6px;list-style:none;align-items:center}
-.nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;padding:8px 14px;border-radius:30px;transition:background .2s,color .2s}
+.nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;padding:8px 14px;border-radius:30px;transition:background .2s,color .2s;white-space:nowrap}
 .nav-links a:hover{background:#f3f4f6}
 .nav-cta{background:var(--orange)!important;color:white!important;font-weight:700!important;box-shadow:0 4px 14px rgba(124,58,237,.35);transition:transform .2s,box-shadow .2s!important}
 .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 20px rgba(124,58,237,.4)!important}
@@ -58,7 +59,7 @@ section{padding:96px 48px}
 .hero-point{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:#fff;border:1px solid #e7e8f0;font-size:13px;font-weight:700;color:#374151;box-shadow:0 4px 14px rgba(15,23,42,.06)}
 .hero-point i{color:var(--orange)}
 .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.btn-main{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;text-decoration:none;font-size:19px;font-weight:800;padding:17px 40px;border-radius:999px;box-shadow:0 8px 28px rgba(124,58,237,.28);transition:transform .25s var(--expo),box-shadow .25s var(--expo)}
+.btn-main{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#4C1D95 0%,#6D28D9 52%,#A78BFA 100%);color:#fff;text-decoration:none;font-size:19px;font-weight:800;padding:17px 40px;border-radius:999px;box-shadow:0 8px 28px rgba(109,40,217,.34);transition:transform .25s var(--expo),box-shadow .25s var(--expo)}
 .btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(124,58,237,.35)}
 .scroll-mark{color:var(--orange);opacity:.75}
 
@@ -117,11 +118,12 @@ section{padding:96px 48px}
 .field input:focus+label,.field input:not(:placeholder-shown)+label,
 .field textarea:focus+label,.field textarea:not(:placeholder-shown)+label{top:7px;font-size:10px;color:var(--orange);font-weight:700}
 .upload{margin-top:8px;border:1.5px dashed #cad4e0;background:#fbfcfd;border-radius:12px;padding:18px;text-align:center;color:#8a95a7;font-size:14px}
-.submit{margin-top:16px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;border:none;border-radius:12px;padding:16px;font-size:22px;font-weight:800;cursor:pointer;transition:transform .22s var(--expo),box-shadow .22s var(--expo);box-shadow:0 8px 24px rgba(124,58,237,.25)}
+.submit{margin-top:16px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#4C1D95 0%,#6D28D9 52%,#A78BFA 100%);color:#fff;border:none;border-radius:12px;padding:16px;font-size:22px;font-weight:800;cursor:pointer;transition:transform .22s var(--expo),box-shadow .22s var(--expo);box-shadow:0 8px 24px rgba(109,40,217,.34)}
 .submit:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,58,237,.32)}
 
 footer{background:var(--dark);padding:48px 48px 28px}
 .f-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:20px;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+footer .f-top .logo img{height:118px;width:auto;display:block}
 footer .logo-happy,footer .logo-desk{color:#fff}
 .f-links{display:flex;gap:18px;flex-wrap:wrap}
 .f-links a{color:rgba(255,255,255,.36);text-decoration:none;font-size:14px}
@@ -134,7 +136,12 @@ footer .logo-happy,footer .logo-desk{color:#fff}
 @media(max-width:768px){
   nav{padding:0 16px;height:60px}
   .nav-links li:not(:nth-last-child(-n+2)){display:none}
+  .nav-links{gap:4px}
+  .nav-links a{font-size:13px;padding:6px 10px}
+  .nav-cta{padding:6px 11px!important}
   .logo{font-size:19px}
+  nav .logo img{height:58px}
+  footer .f-top .logo img{height:88px}
   section{padding:56px 18px}
   .hero-sup{margin-top:60px;min-height:72vh}
   .hero-sup-inner{width:calc(100% - 16px);grid-template-columns:1fr;gap:18px;padding:22px 14px;border-radius:22px}
@@ -144,6 +151,8 @@ footer .logo-happy,footer .logo-desk{color:#fff}
   .hero-points{justify-content:center;margin-bottom:20px;gap:8px}
   .hero-point{font-size:12px;padding:8px 12px}
   .hero-actions{justify-content:center}
+  .btn-main{margin-inline:auto}
+  .scroll-mark{display:none}
   .hero-scene{min-height:220px;width:min(360px,100%);margin:0 auto 4px}
   .scene-card{width:170px;padding:10px 10px 8px;border-radius:14px}
   .scene-card p{font-size:11px}
@@ -164,7 +173,7 @@ footer .logo-happy,footer .logo-desk{color:#fff}
 <div id="bar"></div>
 
 <nav>
-  <a href="index.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+  <a href="index.html" class="logo"><img src="assets/logo-purple-original.PNG" alt="HappyDesk"></a>
   <ul class="nav-links">
     <li><a href="#why">למה אנחנו</a></li>
     <li><a href="#categories">קטגוריות</a></li>
@@ -306,7 +315,7 @@ footer .logo-happy,footer .logo-desk{color:#fff}
 
 <footer>
   <div class="f-top">
-    <a href="index.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+    <a href="index.html" class="logo"><img src="assets/logo-white-original.PNG" alt="HappyDesk"></a>
     <div class="f-links">
       <a href="#why">למה אנחנו</a>
       <a href="#categories">קטגוריות</a>

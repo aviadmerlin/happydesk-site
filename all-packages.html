@@ -23,6 +23,7 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);direc
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
 .logo{font-size:22px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;letter-spacing:-.45px;line-height:1;direction:ltr;unicode-bidi:isolate}
+nav .logo img{height:118px;width:auto;display:block}
 .logo-happy{color:var(--dark)}
 .logo-desk{color:var(--orange)}
 nav .logo-happy,nav .logo-desk{color:var(--orange)}
@@ -62,6 +63,7 @@ nav .logo-happy,nav .logo-desk{color:var(--orange)}
 
 footer{background:var(--dark);padding:34px 48px 26px;color:rgba(255,255,255,.3)}
 .f-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+footer .f-top .logo img{height:118px;width:auto;display:block}
 footer .logo-happy,footer .logo-desk{color:#fff}
 
 @media(max-width:1024px){
@@ -70,6 +72,8 @@ footer .logo-happy,footer .logo-desk{color:#fff}
 @media(max-width:768px){
   nav{padding:0 16px;height:60px}
   .logo{font-size:19px}
+  nav .logo img{height:88px}
+  footer .f-top .logo img{height:88px}
   .nav-links li:not(:nth-last-child(-n+2)){display:none}
   .hero{margin-top:60px;padding:48px 18px 30px}
   .wrap{padding:18px 18px 56px}
@@ -81,7 +85,7 @@ footer .logo-happy,footer .logo-desk{color:#fff}
 </head>
 <body>
 <nav>
-  <a href="index.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+  <a href="index.html" class="logo"><img src="assets/logo-purple-original.PNG" alt="HappyDesk"></a>
   <ul class="nav-links">
     <li><a href="index.html#packages">חזרה לאתר</a></li>
     <li><a href="index.html#contact" class="nav-cta">בואו נדבר ✶</a></li>
@@ -115,7 +119,7 @@ footer .logo-happy,footer .logo-desk{color:#fff}
 
 <footer>
   <div class="f-top">
-    <a href="index.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+    <a href="index.html" class="logo"><img src="assets/logo-white-original.PNG" alt="HappyDesk"></a>
     <span>© 2026 HappyDesk. כל הזכויות שמורות.</span>
   </div>
 </footer>

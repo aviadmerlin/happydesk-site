@@ -31,6 +31,7 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);direc
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
 nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
 .logo{font-size:22px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;letter-spacing:-.45px;line-height:1;direction:ltr;unicode-bidi:isolate;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+nav .logo img{height:118px;width:auto;display:block}
 .logo-happy{color:var(--dark);font-weight:900}
 .logo-desk{color:var(--orange);font-weight:900}
 nav .logo-happy{color:var(--orange)}
@@ -272,7 +273,7 @@ html[dir="ltr"] .how-float-layer{left:auto;right:0}
 .field input:focus~label,.field input:not(:placeholder-shown)~label,
 .field textarea:focus~label,.field textarea:not(:placeholder-shown)~label{top:9px;font-size:11px;color:var(--orange);font-weight:700}
 .field textarea{resize:none;height:110px;padding-top:20px}
-.f-submit{width:100%;background:linear-gradient(135deg,var(--orange),var(--pink));color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:800;font-family:'Heebo',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px;transition:all .25s var(--expo);box-shadow:0 4px 20px rgba(124,58,237,.3)}
+.f-submit{width:100%;background:linear-gradient(135deg,#4C1D95 0%,#6D28D9 52%,#A78BFA 100%);color:white;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:800;font-family:'Heebo',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px;transition:all .25s var(--expo);box-shadow:0 4px 20px rgba(109,40,217,.35)}
 .f-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,.4)}
 .cinfo .info-kicker{font-size:16px;color:var(--muted);margin-top:8px;margin-bottom:36px;line-height:1.7}
 .info-blocks{display:flex;flex-direction:column;gap:12px}
@@ -289,10 +290,12 @@ html[dir="ltr"] .how-float-layer{left:auto;right:0}
 /* FOOTER */
 footer{background:var(--dark);padding:56px 48px 32px}
 .f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:24px}
-.f-brand .logo{margin-bottom:14px;display:inline-flex}
+.f-brand{align-self:start;transform:none}
+.f-brand .logo{display:inline-block;height:64px;overflow:hidden;margin-bottom:2px}
+.f-brand .logo img{height:118px;width:auto;display:block;transform:translateY(-28px)}
 .f-brand .logo-happy{color:white}
 .f-brand .logo-desk{color:white}
-.f-brand p{font-size:14px;color:rgba(255,255,255,.3);line-height:1.7;max-width:260px;margin-top:10px}
+.f-brand p{font-size:14px;color:rgba(255,255,255,.3);line-height:1.7;max-width:260px;margin-top:0}
 .f-col h4{font-size:11px;font-weight:800;color:rgba(255,255,255,.4);margin-bottom:16px;text-transform:uppercase;letter-spacing:.1em}
 .f-col a{display:block;color:rgba(255,255,255,.3);text-decoration:none;font-size:14px;margin-bottom:9px;transition:color .2s}
 .f-col a:hover{color:var(--orange)}
@@ -369,6 +372,10 @@ footer{background:var(--dark);padding:56px 48px 32px}
   .nav-links a{display:flex;align-items:center;justify-content:center;width:100%;padding:10px 14px}
   .nav-links .nav-cta{margin-top:4px}
   .logo{font-size:19px}
+  nav .logo img{height:88px}
+  .f-brand{transform:none}
+  .f-brand .logo{height:50px}
+  .f-brand .logo img{height:88px;transform:translateY(-20px)}
   section{padding:52px 18px}
   .hero{padding:32px 18px 52px;min-height:auto;margin-top:60px}
   .hero-people{display:none}
@@ -432,7 +439,7 @@ footer{background:var(--dark);padding:56px 48px 32px}
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+  <a href="#" class="logo"><img src="assets/logo-purple-original.PNG" alt="HappyDesk"></a>
   <button class="nav-toggle" id="navToggle" aria-label="פתח תפריט ניווט" aria-expanded="false" aria-controls="navLinks">
     <i data-lucide="menu" style="width:18px;height:18px"></i>
   </button>
@@ -769,7 +776,7 @@ footer{background:var(--dark);padding:56px 48px 32px}
 <footer>
   <div class="f-top">
     <div class="f-brand">
-      <a href="#" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+      <a href="#" class="logo"><img src="assets/logo-white-original.PNG" alt="HappyDesk"></a>
       <p>HappyDesk מתכננת ומפיקה אירועי Happy Hour לצוותים וארגונים בישראל - משלב הרעיון ועד הביצוע, בלי כאב ראש.</p>
     </div>
     <div class="f-col"><h4>ניווט</h4><a href="#">דף הבית</a><a href="#how">איך זה עובד</a><a href="#packages">החבילות שלנו</a><a href="#benefits">על HappyDesk</a></div>
