@@ -33,10 +33,13 @@ nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(16px);box-sha
 .logo{font-size:22px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;letter-spacing:-.45px;line-height:1;direction:ltr;unicode-bidi:isolate;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
 .logo-happy{color:var(--dark);font-weight:900}
 .logo-desk{color:var(--orange);font-weight:900}
-nav .logo-happy,nav .logo-desk{color:var(--orange)}
+nav .logo-happy{color:var(--orange)}
+nav .logo-desk{color:var(--dark)}
 .nav-links{display:flex;gap:6px;list-style:none;align-items:center}
 .nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;padding:8px 14px;border-radius:30px;transition:background .2s,color .2s}
 .nav-links a:hover{background:#f3f4f6}
+.nav-toggle{display:none;border:1.5px solid #e5e7eb;background:#fff;color:var(--text);width:40px;height:40px;border-radius:12px;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+.nav-toggle:hover{border-color:#d1d5db;background:#f9fafb}
 .nav-cta{background:var(--orange)!important;color:white!important;font-weight:700!important;box-shadow:0 4px 14px rgba(124,58,237,.35);transition:transform .2s,box-shadow .2s!important}
 .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 20px rgba(124,58,237,.4)!important;background:var(--orange)!important}
 
@@ -359,7 +362,12 @@ footer{background:var(--dark);padding:56px 48px 32px}
 
 @media(max-width:768px){
   nav{padding:0 16px;height:60px}
-  .nav-links li:not(:last-child){display:none}
+  .nav-toggle{display:inline-flex}
+  .nav-links{position:absolute;top:68px;left:16px;right:16px;display:none;flex-direction:column;align-items:stretch;gap:4px;background:rgba(255,255,255,.98);border:1px solid #ececf1;border-radius:16px;padding:10px;box-shadow:0 16px 40px rgba(26,26,46,.12);backdrop-filter:blur(12px)}
+  #nav.nav-open .nav-links{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:flex;align-items:center;justify-content:center;width:100%;padding:10px 14px}
+  .nav-links .nav-cta{margin-top:4px}
   .logo{font-size:19px}
   section{padding:52px 18px}
   .hero{padding:32px 18px 52px;min-height:auto;margin-top:60px}
@@ -425,7 +433,10 @@ footer{background:var(--dark);padding:56px 48px 32px}
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="פתח תפריט ניווט" aria-expanded="false" aria-controls="navLinks">
+    <i data-lucide="menu" style="width:18px;height:18px"></i>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#how">איך זה עובד</a></li>
     <li><a href="#packages">חבילות</a></li>
     <li><a href="#benefits">עלינו</a></li>
@@ -759,8 +770,7 @@ footer{background:var(--dark);padding:56px 48px 32px}
   <div class="f-top">
     <div class="f-brand">
       <a href="#" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
-      <p>ניהול ארוחות עסקיות מובחרות לצוותות וארגונים בישראל. בפשטות, בטעם, בלי כאב ראש.</p>
-      <div class="f-tag"><i data-lucide="heart" style="width:12px;height:12px;color:var(--pink);fill:var(--pink)"></i> מיוצר עם אהבה בת"א</div>
+      <p>HappyDesk מתכננת ומפיקה אירועי Happy Hour לצוותים וארגונים בישראל - משלב הרעיון ועד הביצוע, בלי כאב ראש.</p>
     </div>
     <div class="f-col"><h4>ניווט</h4><a href="#">דף הבית</a><a href="#how">איך זה עובד</a><a href="#packages">החבילות שלנו</a><a href="#benefits">על HappyDesk</a></div>
     <div class="f-col"><h4>יצירת קשר</h4><a href="tel:+972501234567">+972-50-123-4567</a><a href="mailto:hello@happydesk.co.il">hello@happydesk.co.il</a><a>תל אביב, ישראל</a></div>
@@ -801,6 +811,32 @@ window.addEventListener('scroll',()=>{bar.style.width=(window.scrollY/(document.
 
 // NAV
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+// MOBILE NAV
+const navEl=document.getElementById('nav');
+const navToggle=document.getElementById('navToggle');
+if(navToggle){
+  navToggle.addEventListener('click',()=>{
+    const isOpen=navEl.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded',isOpen?'true':'false');
+  });
+
+  document.querySelectorAll('#navLinks a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      if(window.matchMedia('(max-width: 768px)').matches){
+        navEl.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+
+  window.addEventListener('resize',()=>{
+    if(window.innerWidth>768){
+      navEl.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded','false');
+    }
+  });
+}
 
 // REVEAL
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.1});
