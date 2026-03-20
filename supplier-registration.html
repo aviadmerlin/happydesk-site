@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HappyDesk - הרשמת ספקים</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#7C3AED;
+  --pink:#E8520A;
+  --teal:#00C9B1;
+  --yellow:#FFD93D;
+  --dark:#1A1A2E;
+  --text:#1A1A2E;
+  --muted:#6B7280;
+  --bg:#FAFAFA;
+  --white:#fff;
+  --card:#F5F6F8;
+  --expo:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden}
+
+#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--pink),var(--teal));z-index:200;width:0;transition:width .1s linear;border-radius:0 3px 3px 0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.logo{font-size:22px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;letter-spacing:-.45px;line-height:1;direction:ltr;unicode-bidi:isolate;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+.logo-happy{color:var(--dark);font-weight:900}
+.logo-desk{color:var(--orange);font-weight:900}
+nav .logo-happy,nav .logo-desk{color:var(--orange)}
+.nav-links{display:flex;gap:6px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;padding:8px 14px;border-radius:30px;transition:background .2s,color .2s}
+.nav-links a:hover{background:#f3f4f6}
+.nav-cta{background:var(--orange)!important;color:white!important;font-weight:700!important;box-shadow:0 4px 14px rgba(124,58,237,.35);transition:transform .2s,box-shadow .2s!important}
+.nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 8px 20px rgba(124,58,237,.4)!important}
+
+section{padding:96px 48px}
+.s-lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:var(--orange)}
+.s-ttl{font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-1px;color:var(--text);line-height:1.18;margin-bottom:16px}
+.s-sub{font-size:17px;color:var(--muted);line-height:1.75;max-width:680px}
+
+.hero-sup{margin-top:68px;min-height:82vh;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 12% 18%,rgba(124,58,237,.3),rgba(124,58,237,0) 38%),radial-gradient(circle at 84% 15%,rgba(0,201,177,.2),rgba(0,201,177,0) 42%),radial-gradient(circle at 74% 82%,rgba(232,82,10,.16),rgba(232,82,10,0) 46%),linear-gradient(160deg,#fdfbff 0%,#f7f4ff 45%,#f4f8ff 100%)}
+.hero-sup::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.5),rgba(255,255,255,0) 26%,rgba(255,255,255,.44));pointer-events:none}
+.hero-sup::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 92%,rgba(124,58,237,.08) 100%),repeating-linear-gradient(90deg,rgba(124,58,237,.045) 0 1px,transparent 1px 78px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.26),rgba(0,0,0,0) 64%);pointer-events:none}
+.hero-sup-inner{position:relative;z-index:2;width:min(1120px,calc(100% - 42px));display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;padding:40px 34px;border-radius:30px;background:rgba(255,255,255,.72);backdrop-filter:blur(10px);border:1px solid rgba(124,58,237,.14);box-shadow:0 22px 62px rgba(15,23,42,.1)}
+.hero-sup-inner::before,.hero-sup-inner::after{content:'';position:absolute;width:180px;height:180px;border-radius:50%;filter:blur(32px);z-index:-1;pointer-events:none}
+.hero-sup-inner::before{top:-48px;right:-40px;background:rgba(124,58,237,.22)}
+.hero-sup-inner::after{bottom:-56px;left:-44px;background:rgba(0,201,177,.2)}
+.hero-copy{text-align:right}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(124,58,237,.28);background:#faf5ff;color:var(--orange);border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;margin-bottom:28px}
+.hero-sup h1{font-size:clamp(44px,5.6vw,78px);font-weight:900;letter-spacing:-1.45px;line-height:1.06;margin-bottom:16px;white-space:normal}
+.hero-sup h1 .hl{background:linear-gradient(135deg,#5B21B6 0%,#7C3AED 50%,#A78BFA 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sup p{font-size:20px;line-height:1.65;color:#475467;max-width:640px;margin:0 0 30px}
+.hero-points{display:flex;justify-content:flex-start;gap:10px;flex-wrap:wrap;margin:0 0 28px;max-width:760px}
+.hero-point{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:#fff;border:1px solid #e7e8f0;font-size:13px;font-weight:700;color:#374151;box-shadow:0 4px 14px rgba(15,23,42,.06)}
+.hero-point i{color:var(--orange)}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-main{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;text-decoration:none;font-size:19px;font-weight:800;padding:17px 40px;border-radius:999px;box-shadow:0 8px 28px rgba(124,58,237,.28);transition:transform .25s var(--expo),box-shadow .25s var(--expo)}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(124,58,237,.35)}
+.scroll-mark{color:var(--orange);opacity:.75}
+
+.hero-scene{position:relative;min-height:320px}
+.hero-scene::before{content:'';position:absolute;inset:12% 8% 10%;border-radius:26px;background:linear-gradient(140deg,rgba(124,58,237,.13),rgba(0,201,177,.09));border:1px solid rgba(124,58,237,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.55)}
+.scene-orb{position:absolute;border-radius:50%;filter:blur(22px);pointer-events:none}
+.orb-a{width:110px;height:110px;top:8%;left:10%;background:rgba(124,58,237,.38)}
+.orb-b{width:90px;height:90px;bottom:14%;right:14%;background:rgba(0,201,177,.34)}
+.scene-card{position:absolute;width:220px;background:#fff;border:1px solid #ebeef4;border-radius:18px;padding:14px 14px 12px;box-shadow:0 18px 34px rgba(15,23,42,.11);animation:sceneFloat 5.2s ease-in-out infinite;transition:transform .35s var(--expo),box-shadow .35s var(--expo),border-color .3s var(--expo),filter .3s var(--expo);overflow:hidden;cursor:default}
+.scene-card::after{content:'';position:absolute;inset:-40% auto -40% -140%;width:52%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));transform:rotate(16deg);opacity:0;transition:opacity .35s ease,left .55s var(--expo)}
+.scene-card .sc-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#1f2937;margin-bottom:7px}
+.scene-card .sc-head i{color:var(--orange)}
+.scene-card p{font-size:12px;line-height:1.6;color:#6b7280}
+.sc-a{top:14%;right:14%;transform:rotate(-4deg)}
+.sc-b{top:41%;left:8%;transform:rotate(3deg);animation-delay:-1.4s}
+.sc-c{bottom:10%;right:21%;transform:rotate(-2deg);animation-delay:-2.6s}
+@keyframes sceneFloat{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(var(--r,0deg))}}
+.sc-a{--r:-4deg}
+.sc-b{--r:3deg}
+.sc-c{--r:-2deg}
+.hero-scene:hover .scene-card{animation-play-state:paused;filter:saturate(1.02)}
+.scene-card:hover{transform:translateY(-16px) rotate(var(--r,0deg)) scale(1.04);box-shadow:0 26px 48px rgba(15,23,42,.18),0 10px 24px rgba(124,58,237,.14);border-color:rgba(124,58,237,.28);z-index:5}
+.scene-card:hover::after{opacity:1;left:130%}
+
+.why{background:#F5F6F8}
+.center-top{text-align:center;margin-bottom:42px}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#fff;border:1px solid #eceff4;border-radius:18px;padding:28px;min-height:170px;transition:transform .25s var(--expo),box-shadow .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(15,23,42,.06)}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--orange);background:#f3e8ff}
+.card h3{font-size:24px;font-weight:800;letter-spacing:-.4px;margin-bottom:10px}
+.card p{font-size:15px;line-height:1.75;color:var(--muted)}
+
+.categories{background:#EFF1F5}
+.categories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cat{background:#fff;border:1px solid #e9edf2;border-radius:16px;padding:30px 20px;text-align:center;transition:transform .25s var(--expo),box-shadow .25s}
+.cat:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,23,42,.06)}
+.cat .icon{width:50px;height:50px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;background:#f5f3ff;color:var(--orange)}
+.cat h4{font-size:21px;font-weight:800;margin-bottom:4px}
+.cat p{font-size:14px;color:var(--muted)}
+
+.form-sec{background:#fff}
+.form-wrap{max-width:980px;margin:0 auto;background:#f8f9fb;border:1px solid #edf0f4;border-radius:22px;padding:32px 24px}
+.form-h{text-align:center;margin-bottom:24px}
+.form-h h2{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+.form-h p{font-size:18px;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{position:relative;margin-bottom:12px}
+.field input,.field select,.field textarea{width:100%;background:#fff;border:1.5px solid #dde3ea;border-radius:12px;padding:16px 14px 8px;font-size:15px;font-family:'Heebo',sans-serif;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s}
+.field textarea{height:130px;resize:none;padding-top:18px}
+.field select{appearance:none;padding:22px 38px 8px 14px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 12px center;background-size:14px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+.field label{position:absolute;top:50%;right:14px;transform:translateY(-50%);font-size:13px;color:var(--muted);pointer-events:none;transition:all .2s var(--expo);background:#fff;padding:0 3px}
+.field textarea+label{top:16px;transform:none}
+.field select+label{top:7px;font-size:10px;color:var(--orange);font-weight:700;transform:none}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,
+.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label{top:7px;font-size:10px;color:var(--orange);font-weight:700}
+.upload{margin-top:8px;border:1.5px dashed #cad4e0;background:#fbfcfd;border-radius:12px;padding:18px;text-align:center;color:#8a95a7;font-size:14px}
+.submit{margin-top:16px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;border:none;border-radius:12px;padding:16px;font-size:22px;font-weight:800;cursor:pointer;transition:transform .22s var(--expo),box-shadow .22s var(--expo);box-shadow:0 8px 24px rgba(124,58,237,.25)}
+.submit:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,58,237,.32)}
+
+footer{background:var(--dark);padding:48px 48px 28px}
+.f-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:20px;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+footer .logo-happy,footer .logo-desk{color:#fff}
+.f-links{display:flex;gap:18px;flex-wrap:wrap}
+.f-links a{color:rgba(255,255,255,.36);text-decoration:none;font-size:14px}
+.f-links a:hover{color:var(--orange)}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.24);font-size:13px;gap:10px;flex-wrap:wrap}
+
+@media(max-width:1024px){
+  .categories-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  nav{padding:0 16px;height:60px}
+  .nav-links li:not(:last-child){display:none}
+  .logo{font-size:19px}
+  section{padding:56px 18px}
+  .hero-sup{margin-top:60px;min-height:72vh}
+  .hero-sup-inner{width:calc(100% - 16px);grid-template-columns:1fr;gap:18px;padding:22px 14px;border-radius:22px}
+  .hero-copy{text-align:center}
+  .hero-sup h1{font-size:42px;white-space:normal}
+  .hero-sup p{font-size:17px}
+  .hero-points{justify-content:center;margin-bottom:20px;gap:8px}
+  .hero-point{font-size:12px;padding:8px 12px}
+  .hero-actions{justify-content:center}
+  .hero-scene{min-height:220px;width:min(360px,100%);margin:0 auto 4px}
+  .scene-card{width:170px;padding:10px 10px 8px;border-radius:14px}
+  .scene-card p{font-size:11px}
+  .sc-a{top:14%;right:8%}
+  .sc-b{top:43%;left:4%}
+  .sc-c{bottom:12%;right:18%}
+  .btn-main{font-size:17px;padding:14px 28px}
+  .card-grid,.categories-grid,.row{grid-template-columns:1fr}
+  .card h3{font-size:22px}
+  .form-wrap{padding:20px 14px}
+  .submit{font-size:20px}
+  footer{padding:34px 18px 22px}
+  .f-bottom{justify-content:center;text-align:center}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<nav>
+  <a href="happydeskwebsite.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">למה אנחנו</a></li>
+    <li><a href="#categories">קטגוריות</a></li>
+    <li><a href="#register">הרשמה</a></li>
+    <li><a href="happydeskwebsite.html">חזרה לאתר</a></li>
+    <li><a href="#register" class="nav-cta">הירשמו עכשיו</a></li>
+  </ul>
+</nav>
+
+<section class="hero-sup">
+  <div class="hero-sup-inner">
+    <div class="hero-copy">
+      <div class="hero-chip"><i data-lucide="sparkles" style="width:14px;height:14px"></i> מצטרפים לרשת הספקים שלנו</div>
+      <h1>הצטרפו כספקים ל-<span class="hl">HappyDesk</span></h1>
+      <p>אנחנו עובדים עם ספקי בוטיק בתחומי אוכל, קוקטיילים, סדנאות וחוויות לאירועי חברות הייטק.</p>
+      <div class="hero-points">
+        <span class="hero-point"><i data-lucide="users-round" style="width:14px;height:14px"></i> חשיפה לחברות מובילות</span>
+        <span class="hero-point"><i data-lucide="calendar-check" style="width:14px;height:14px"></i> עבודה שוטפת כל השנה</span>
+        <span class="hero-point"><i data-lucide="badge-check" style="width:14px;height:14px"></i> תהליך הצטרפות מהיר</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#register" class="btn-main"><i data-lucide="send" style="width:20px;height:20px"></i> הגישו מועמדות</a>
+        <div class="scroll-mark"><i data-lucide="chevron-down"></i></div>
+      </div>
+    </div>
+    <div class="hero-scene" aria-hidden="true">
+      <span class="scene-orb orb-a"></span>
+      <span class="scene-orb orb-b"></span>
+      <article class="scene-card sc-a">
+        <div class="sc-head"><i data-lucide="briefcase" style="width:14px;height:14px"></i> לידים איכותיים</div>
+        <p>חיבור ישיר לחברות הייטק שמחפשות ספקים ברמה גבוהה.</p>
+      </article>
+      <article class="scene-card sc-b">
+        <div class="sc-head"><i data-lucide="party-popper" style="width:14px;height:14px"></i> אירועים מגוונים</div>
+        <p>האפי האוור, השקות, סדנאות וגיבושים לאורך כל השנה.</p>
+      </article>
+      <article class="scene-card sc-c">
+        <div class="sc-head"><i data-lucide="badge-check" style="width:14px;height:14px"></i> תהליך מהיר</div>
+        <p>מצטרפים בקלות, מקבלים פניות ומתמקדים בעשייה שלכם.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="center-top">
+    <div class="s-lbl"><i data-lucide="badge-check" style="width:12px;height:12px"></i> יתרונות השותף</div>
+    <h2 class="s-ttl">למה לעבוד איתנו?</h2>
+  </div>
+  <div class="card-grid">
+    <article class="card">
+      <div class="card-icon"><i data-lucide="users"></i></div>
+      <h3>לקוחות קבועים מחברות הייטק</h3>
+      <p>גישה ישירה למנהלי HR וחברות טכנולוגיה מובילות בישראל.</p>
+    </article>
+    <article class="card">
+      <div class="card-icon"><i data-lucide="calendar-days"></i></div>
+      <h3>עבודה שוטפת לאורך השנה</h3>
+      <p>זרם קבוע של הזמנות ואירועים, לא רק בעונות השיא.</p>
+    </article>
+    <article class="card">
+      <div class="card-icon"><i data-lucide="shield-check"></i></div>
+      <h3>קהילת ספקי בוטיק איכותיים</h3>
+      <p>הצטרפו לרשת של ספקים מובילים שמספקים חוויות ייחודיות.</p>
+    </article>
+    <article class="card">
+      <div class="card-icon"><i data-lucide="handshake"></i></div>
+      <h3>פחות שיווק והתעסקות</h3>
+      <p>אנחנו מביאים את הלקוחות אליכם, אתם מתמקדים במה שאתם עושים הכי טוב.</p>
+    </article>
+  </div>
+</section>
+
+<section class="categories" id="categories">
+  <div class="center-top">
+    <div class="s-lbl"><i data-lucide="grid-2x2" style="width:12px;height:12px"></i> מי אנחנו מחפשים</div>
+    <h2 class="s-ttl">סוגי ספקים שאנחנו עובדים איתם</h2>
+    <p class="s-sub" style="text-align:center;margin-inline:auto;">אם אתם מספקים שירותים איכותיים באחד התחומים הבאים, נשמח לשמוע מכם.</p>
+  </div>
+  <div class="categories-grid">
+    <article class="cat">
+      <div class="icon"><i data-lucide="utensils-crossed"></i></div>
+      <h4>ספקי אוכל</h4>
+      <p>מגשי אירוח, מנות שף, פינגר פוד ועוד.</p>
+    </article>
+    <article class="cat">
+      <div class="icon"><i data-lucide="glass-water"></i></div>
+      <h4>ברים וקוקטיילים</h4>
+      <p>ברמנים, עמדות קוקטיילים ויין.</p>
+    </article>
+    <article class="cat">
+      <div class="icon"><i data-lucide="party-popper"></i></div>
+      <h4>סדנאות</h4>
+      <p>פעילויות תוכן וחוויות לצוותים.</p>
+    </article>
+    <article class="cat">
+      <div class="icon"><i data-lucide="cake"></i></div>
+      <h4>קינוחים מתוקים</h4>
+      <p>עמדות קינוח, אפייה וקונדיטוריה.</p>
+    </article>
+    <article class="cat">
+      <div class="icon"><i data-lucide="users-round"></i></div>
+      <h4>פעילויות קבוצתיות</h4>
+      <p>גיבוש, משחקים, הפעלות אינטראקטיביות.</p>
+    </article>
+    <article class="cat">
+      <div class="icon"><i data-lucide="lamp"></i></div>
+      <h4>תוכן וחוויה</h4>
+      <p>מנחים, מרצים וחוויות מיוחדות.</p>
+    </article>
+  </div>
+</section>
+
+<section class="form-sec" id="register">
+  <div class="form-h">
+    <div class="s-lbl"><i data-lucide="pen-line" style="width:12px;height:12px"></i> שלב אחרון</div>
+    <h2>טופס הרשמת ספקים</h2>
+    <p>מלאו את הפרטים ונחזור אליכם בתוך 48 שעות</p>
+  </div>
+  <div class="form-wrap">
+    <div class="row">
+      <div class="field"><input id="business" type="text" placeholder=" "><label for="business">שם העסק</label></div>
+      <div class="field"><input id="person" type="text" placeholder=" "><label for="person">שם איש קשר</label></div>
+    </div>
+    <div class="row">
+      <div class="field"><input id="phone" type="tel" placeholder=" "><label for="phone">טלפון</label></div>
+      <div class="field"><input id="email" type="email" placeholder=" "><label for="email">אימייל</label></div>
+    </div>
+    <div class="row">
+      <div class="field"><select id="service"><option>בחר סוג שירות</option><option>ספקי אוכל</option><option>ברים וקוקטיילים</option><option>סדנאות</option><option>פעילויות קבוצתיות</option><option>אחר</option></select><label for="service">סוג השירות</label></div>
+      <div class="field"><input id="city" type="text" placeholder=" "><label for="city">עיר / אזור שירות</label></div>
+    </div>
+    <div class="field"><input id="social" type="text" placeholder=" "><label for="social">קישור לאינסטגרם / אתר</label></div>
+    <div class="field"><textarea id="about" placeholder=" "></textarea><label for="about">תיאור קצר של השירות</label></div>
+    <div class="upload"><i data-lucide="upload" style="width:16px;height:16px;vertical-align:-3px"></i> לחצו כאן להעלאת תמונות (אופציונלי)</div>
+    <button class="submit" id="sendForm"><i data-lucide="send" style="width:18px;height:18px"></i> שלחו מועמדות</button>
+  </div>
+</section>
+
+<footer>
+  <div class="f-top">
+    <a href="happydeskwebsite.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+    <div class="f-links">
+      <a href="#why">למה אנחנו</a>
+      <a href="#categories">קטגוריות</a>
+      <a href="#register">טופס הרשמה</a>
+      <a href="happydeskwebsite.html">חזרה לאתר הראשי</a>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span>© HappyDesk 2026. כל הזכויות שמורות.</span>
+    <span>נבנה עם אהבה בתל אביב</span>
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+const bar=document.getElementById('bar');
+window.addEventListener('scroll',()=>{
+  bar.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
+
+document.getElementById('sendForm').addEventListener('click',function(e){
+  e.preventDefault();
+  const btn=this;
+  btn.disabled=true;
+  btn.style.opacity='.75';
+  btn.innerHTML='<i data-lucide="loader-circle" style="width:18px;height:18px"></i> שולחים...';
+  lucide.createIcons();
+  setTimeout(()=>{
+    btn.innerHTML='<i data-lucide="check-circle-2" style="width:18px;height:18px"></i> הבקשה נשלחה';
+    btn.style.background='linear-gradient(135deg,#059669,#00C9B1)';
+    lucide.createIcons();
+  },1000);
+});
+</script>
+</body>
+</html>

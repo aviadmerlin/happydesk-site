@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HappyDesk - כל החבילות</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#7C3AED;
+  --pink:#E8520A;
+  --teal:#00C9B1;
+  --dark:#1A1A2E;
+  --text:#1A1A2E;
+  --muted:#6B7280;
+  --bg:#FAFAFA;
+  --expo:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.logo{font-size:22px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;letter-spacing:-.45px;line-height:1;direction:ltr;unicode-bidi:isolate}
+.logo-happy{color:var(--dark)}
+.logo-desk{color:var(--orange)}
+nav .logo-happy,nav .logo-desk{color:var(--orange)}
+.nav-links{display:flex;gap:8px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;padding:8px 14px;border-radius:30px;transition:background .2s,color .2s}
+.nav-links a:hover{background:#f3f4f6}
+.nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;box-shadow:0 4px 14px rgba(124,58,237,.35)}
+
+.hero{margin-top:68px;padding:72px 48px 44px;background:#fff}
+.s-lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--orange);margin-bottom:12px}
+.s-ttl{font-size:clamp(30px,4.2vw,54px);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:12px}
+.s-sub{font-size:18px;color:var(--muted);max-width:700px;line-height:1.7}
+
+.wrap{padding:20px 48px 90px}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pkg-card{background:#fff;border-radius:22px;overflow:hidden;border:1px solid #f0f0f0;transition:transform .3s var(--expo),box-shadow .3s,border-color .3s;cursor:pointer}
+.pkg-card:hover{transform:translateY(-5px);box-shadow:0 18px 42px rgba(0,0,0,.08);border-color:rgba(124,58,237,.2)}
+.pkg-thumb{height:220px;position:relative;overflow:hidden}
+.pkg-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.pkg-card:hover .pkg-thumb img{transform:scale(1.05)}
+.pkg-hot{position:absolute;top:14px;right:14px;font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px;letter-spacing:.04em}
+.hot-o{background:var(--orange);color:#fff}
+.hot-p{background:var(--pink);color:#fff}
+.hot-t{background:var(--teal);color:#fff}
+.pkg-body{padding:22px 24px 24px}
+.pkg-body h3{font-size:20px;font-weight:800;margin-bottom:7px;letter-spacing:-.3px}
+.pkg-body p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px}
+.pkg-ft{display:flex;align-items:center;justify-content:space-between}
+.pkg-tags{display:flex;gap:6px;flex-wrap:wrap}
+.pkg-tag{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.tag-o{background:#f3e8ff;color:var(--orange)}
+.tag-p{background:#ffe4f5;color:var(--pink)}
+.tag-t{background:#e0f7f4;color:var(--teal)}
+.tag-g{background:#f3f4f6;color:var(--muted)}
+.pkg-arr{width:38px;height:38px;border-radius:50%;border:1.5px solid #e5e7eb;display:flex;align-items:center;justify-content:center;transition:all .25s var(--expo);color:var(--muted)}
+.pkg-card:hover .pkg-arr{background:var(--orange);border-color:var(--orange);color:#fff;transform:rotate(-45deg)}
+
+footer{background:var(--dark);padding:34px 48px 26px;color:rgba(255,255,255,.3)}
+.f-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+footer .logo-happy,footer .logo-desk{color:#fff}
+
+@media(max-width:1024px){
+  .pkg-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  nav{padding:0 16px;height:60px}
+  .logo{font-size:19px}
+  .nav-links li:not(:last-child){display:none}
+  .hero{margin-top:60px;padding:48px 18px 30px}
+  .wrap{padding:18px 18px 56px}
+  .pkg-grid{grid-template-columns:1fr;gap:14px}
+  .pkg-thumb{height:190px}
+  footer{padding:28px 18px 20px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="happydeskwebsite.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+  <ul class="nav-links">
+    <li><a href="happydeskwebsite.html#packages">חזרה לאתר</a></li>
+    <li><a href="happydeskwebsite.html#contact" class="nav-cta">בואו נדבר ✶</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="s-lbl"><i data-lucide="utensils" style="width:12px;height:12px"></i> קטלוג מלא</div>
+  <h1 class="s-ttl">כל החבילות שלנו</h1>
+  <p class="s-sub">12 חבילות מוכנות לאירועי חברה, Happy Hour, מפגשי צוות והרמות כוסית. בחרו את הסגנון שמתאים לכם.</p>
+</section>
+
+<main class="wrap">
+  <div class="pkg-grid">
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=700&q=85" alt="סושי"><span class="pkg-hot hot-o">פופולרי</span></div><div class="pkg-body"><h3>סדנת הקאפלים</h3><p>חבילת אוכל יפנית מפנקת עם סושי טרי, ראמן ועוד.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-o">יפני</span><span class="pkg-tag tag-g">עד 25 איש</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1565299715199-866c917206bb?w=700&q=85" alt="פיצה"></div><div class="pkg-body"><h3>מקשקו</h3><p>פיצות, פוקאצ'ות ואנטיפסטי איטלקי אותנטי לצוותים רעבים.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-p">איטלקי</span><span class="pkg-tag tag-g">עד 40 איש</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=700&q=85" alt="קראפט"><span class="pkg-hot hot-t">אווירה</span></div><div class="pkg-body"><h3>טעימות בכלה</h3><p>חוויה ייחודית של שתייה ונשנושים מקומיים באווירה משוחררת.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-t">Craft</span><span class="pkg-tag tag-g">מקומי</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&q=85" alt="סלט"><span class="pkg-hot hot-p">חדש</span></div><div class="pkg-body"><h3>אפריקן-שלק</h3><p>טעמים אפריקניים עשירים ותבלינים מיוחדים לפתיחת תיאבון.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-p">אפריקני</span><span class="pkg-tag tag-g">ייחודי</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=85" alt="בראנץ"></div><div class="pkg-body"><h3>בראנץ׳ בוטיק</h3><p>מבחר מאפים, גבינות, סלטים וקפה איכותי לפתיחת יום צוות.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-o">בוקר</span><span class="pkg-tag tag-g">עד 35 איש</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&q=85" alt="גריל"></div><div class="pkg-body"><h3>גריל אורבני</h3><p>בשרים, תוספות ועמדת גריל לאירועי ערב באווירה חמה.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-p">בשרי</span><span class="pkg-tag tag-g">עד 60 איש</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=700&q=85" alt="טאפס"></div><div class="pkg-body"><h3>טאפס ספרדי</h3><p>ביסים קטנים ומדויקים, מושלם למינגלינג וחצי-פורמלי.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-t">טאפס</span><span class="pkg-tag tag-g">Standing</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=700&q=85" alt="בריאות"></div><div class="pkg-body"><h3>Healthy Boost</h3><p>קערות בריאות, חלבונים צמחיים ותפריט מאוזן למשרד.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-o">בריא</span><span class="pkg-tag tag-g">צמחוני</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=700&q=85" alt="ים תיכוני"></div><div class="pkg-body"><h3>שוק ים-תיכוני</h3><p>חומוס, סלטים, שיפודים קלים ומנות ים-תיכוניות אהובות.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-p">ים תיכוני</span><span class="pkg-tag tag-g">עד 50 איש</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=700&q=85" alt="קינוחים"><span class="pkg-hot hot-o">מתוק</span></div><div class="pkg-body"><h3>Sweet Desk</h3><p>ברי קינוחים, עמדת גלידה ומגשי פטיסרי מפנקים במיוחד.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-o">קינוחים</span><span class="pkg-tag tag-g">השלמה</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=700&q=85" alt="קוקטיילים"></div><div class="pkg-body"><h3>Cocktail Hour</h3><p>בר קוקטיילים מקצועי עם מיקסולוג ותפריט מותאם לאירוע.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-t">בר</span><span class="pkg-tag tag-g">עם ברמן</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+    <div class="pkg-card"><div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=85" alt="הרמות כוסית"></div><div class="pkg-body"><h3>הרמת כוסית פרימיום</h3><p>אירוח מוקפד לאירועי חברה, עם שילוב אוכל, שתייה ונראות.</p><div class="pkg-ft"><div class="pkg-tags"><span class="pkg-tag tag-p">פרימיום</span><span class="pkg-tag tag-g">חגיגי</span></div><div class="pkg-arr"><i data-lucide="arrow-left" style="width:16px;height:16px"></i></div></div></div></div>
+  </div>
+</main>
+
+<footer>
+  <div class="f-top">
+    <a href="happydeskwebsite.html" class="logo"><span class="logo-happy">Happy</span><span class="logo-desk">Desk</span></a>
+    <span>© 2026 HappyDesk. כל הזכויות שמורות.</span>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
