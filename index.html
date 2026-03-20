@@ -378,6 +378,8 @@ footer{background:var(--dark);padding:56px 48px 32px}
   .stat{padding:22px 14px}
   .stat-n{font-size:36px}
   .how-layout{grid-template-columns:1fr;gap:32px}
+  .how .step-c{transition:background-color .35s var(--expo),border-color .35s var(--expo),color .35s var(--expo),transform .35s var(--expo),box-shadow .35s var(--expo)}
+  .how .step.mobile-step-active .step-c{background:var(--orange);border-color:var(--orange);color:#fff;transform:scale(1.08);box-shadow:0 8px 18px rgba(124,58,237,.26)}
   .how-vis{display:none}
   .how-vis{min-height:260px}
   .how-img{min-height:260px}
@@ -803,6 +805,27 @@ window.addEventListener('scroll',()=>document.getElementById('nav').classList.to
 // REVEAL
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.1});
 document.querySelectorAll('.rv,.rv-l,.rv-s').forEach(el=>io.observe(el));
+
+// MOBILE HOW STEPS SCROLL FILL
+if(window.matchMedia('(max-width: 768px)').matches){
+  const mobileSteps=[...document.querySelectorAll('.how .steps .step')];
+  let activeSteps=0;
+  const stepObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const index=mobileSteps.indexOf(entry.target);
+      if(index===-1)return;
+      activeSteps=Math.max(activeSteps,index+1);
+      mobileSteps.forEach((step,stepIndex)=>{
+        if(stepIndex<activeSteps){
+          setTimeout(()=>step.classList.add('mobile-step-active'),stepIndex*140);
+        }
+      });
+      stepObserver.unobserve(entry.target);
+    });
+  },{threshold:.55,rootMargin:'0px 0px -12% 0px'});
+  mobileSteps.forEach(step=>stepObserver.observe(step));
+}
 
 // COUNTERS
 function counter(el,target){
